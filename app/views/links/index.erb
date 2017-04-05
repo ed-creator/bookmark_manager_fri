@@ -11,4 +11,9 @@
       URL: <%= link.url %>
     </li>
   <% end %>
+  <% @tags.each do |tag| %>
+    <li>
+      Tag: <%= tag.tag_name %>
+    </li>
+  <% end %>
 </u1>

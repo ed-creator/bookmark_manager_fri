@@ -1,5 +1,3 @@
-require 'capybara/rspec'
-
 feature 'viewing saved sites' do
   scenario 'seeing existing links on the links page' do
     Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
