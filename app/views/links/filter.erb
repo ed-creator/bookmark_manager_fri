@@ -1,1 +1,14 @@
 <h1>Links containing the tag: '<%= $filter %>'</h1>
+
+<!-- list of links that match the filter -->
+<ul id='links'>
+  <% @links.select do |link| @links[link].tags == $filter %>
+
+      <li>
+        Title: <%= links.title %>
+        <!-- currently not returning link info -->
+        URL: <%= links.url %>
+      </li>
+    <% end %>
+
+</ul>

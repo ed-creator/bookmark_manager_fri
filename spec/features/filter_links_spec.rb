@@ -12,8 +12,10 @@ feature 'Filter by links' do
     click_button 'Save link'
     fill_in 'filter', with: 'bubbles'
     click_button 'Search'
-    expect(page).to have_content "Bath foam party"
-    expect(page).not_to have_content "Makers Academy"
+    within 'ul#links' do
+      expect(page).to have_content "Bath foam party"
+      expect(page).not_to have_content "Makers Academy"
+    end
   end
 
   scenario 'returns the title with search term' do
