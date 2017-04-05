@@ -11,14 +11,9 @@
       URL: <%= link.url %>
     </li>
   <% end %>
-  <% @tags.each do |tag| %>
-    <li>
-      Tag: <%= tag.tag_name %>
-    </li>
-  <% end %>
 </u1>
 
-<form action="/tags" method="get">
+<form action="/tags" method="post">
   <label>
     Filter tags:
     <input type='type' name='filter'/>
