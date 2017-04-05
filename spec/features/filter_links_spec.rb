@@ -21,11 +21,4 @@ feature 'Filter by links' do
     end
   end
 
-  scenario 'returns the title with search term' do
-    visit '/links'
-    fill_in 'filter', with: 'bubbles'
-    click_button 'Search'
-    expect(page).to have_content "Links containing the tag: 'bubbles'"
-  end
-
 end
