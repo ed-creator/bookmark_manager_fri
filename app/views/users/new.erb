@@ -1,6 +1,6 @@
 
 <form action='/users' method='post'>
-  Email: <input type='text' name='email' value='<%= @user.email %>'/>
+  Email: <input type='email' name='email' value='<%= @user.email %>' required >
   enter password: <input type='password' name='password' />
   confirm password: <input type='password' name='password_confirmation' />
   <input type='submit' value='Sign Up' />
