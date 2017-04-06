@@ -1,6 +1,9 @@
 require 'capybara/rspec'
 
 feature 'can save websites' do
+  before(:each) do
+    User.create(email: 'bob@gmail.com', password: 's3cr3t')
+  end
   scenario 'can submit new link to bookmark manager' do
     visit '/links/new'
     fill_in 'url', with: 'http://www.zombo.com/'

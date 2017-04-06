@@ -1,4 +1,7 @@
 feature 'adding tags' do
+  before(:each) do
+    User.create(email: 'bob@gmail.com', password: 's3cr3t')
+  end
   scenario 'add tag to site' do
     visit '/links/new'
     fill_in 'url', with: 'http://www.makersacademy.com/'

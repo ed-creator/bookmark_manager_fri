@@ -1,6 +1,7 @@
 feature 'Filter by links' do
 
   before(:each) do
+    User.create(email: 'bob@gmail.com', password: 's3cr3t')
     Link.create(url: 'www.makersacademy.com', title: 'Makers Academy', tags: [Tag.first_or_create(tag_name: 'education')])
     Link.create(url: 'www.google.com', title: 'Google', tags: [Tag.first_or_create(tag_name: 'search')])
     Link.create(url: 'www.zombo.com', title: 'This is Zombocom', tags: [Tag.first_or_create(tag_name: 'bubbles')])
