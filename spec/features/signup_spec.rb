@@ -3,9 +3,19 @@ feature 'allows user to sign up with an email & password' do
     visit '/users/new'
     fill_in 'email', with: 'bob@gmail.com'
     fill_in 'password', with: 's3cr3t'
+    fill_in 'password_confirmation', with: 's3cr3t'
     click_button 'Sign Up'
     expect(current_path).to eq '/links'
     expect(page).to have_content 'Welcome, bob@gmail.com'
     expect(User.count).to eq 1
     end
+
+  scenario 'user wrong password confirmation' do
+    visit '/users/new'
+    fill_in 'email', with: 'bob@gmail.com'
+    fill_in 'password', with: 's3cr3t'
+    fill_in 'password_confirmation', with: 'secret'
+    click_button 'Sign Up'
+    expect(User.count).to eq 0
+  end
 end
