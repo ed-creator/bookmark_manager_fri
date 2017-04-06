@@ -16,6 +16,8 @@ feature 'allows user to sign up with an email & password' do
     fill_in 'password', with: 's3cr3t'
     fill_in 'password_confirmation', with: 'secret'
     click_button 'Sign Up'
+    expect(current_path).to eq '/users'
+    expect(page).to have_content 'Passwords do not match!'
     expect(User.count).to eq 0
   end
 end
