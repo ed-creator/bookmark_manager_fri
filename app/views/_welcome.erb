@@ -1,0 +1,13 @@
+<% if current_user %>
+  Welcome, <%= current_user.email %>
+<% end %>
+<% if current_user %>
+  <%= current_user.email %> logged in
+<% end %>
+
+
+<% if current_user %>
+  <form action='/sessions/end' method='post' >
+    <input type='submit' value='Log Out' >
+  </form>
+<% end %>
