@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'securerandom'
 
 class User
 
@@ -6,8 +7,9 @@ class User
 
   property :id, Serial
   property :email, String, :required => true, :format => :email_address, unique: true
-
   property :password_digest, Text
+  property :password_token, Text
+  property :password_token_time, Time
 
   attr_accessor :password_confirmation
   attr_reader :password
@@ -28,6 +30,17 @@ class User
       nil
     end
   end
+
+  def generate
+    self.password_token = SecureRandom.hex
+    self.password_token_time = Time.now
+    self.save
+  end
+
+  def password_recovery?(email, input_token)
+    Time.now <= password_token_time + (60 * 60) && input_token == password_token
+  end
+
 
 
 end

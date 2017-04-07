@@ -21,4 +21,31 @@ post '/sessions/end' do
   redirect '/links'
 end
 
-end 
+get '/sessions/forgot_password' do
+  erb :'sessions/forgot_password'
+end
+
+post '/sessions/forgot_password' do
+  flash.next[:recovery_email] = 'Recovery email sent'
+  user = User.first(email: params[:email])
+  user.generate
+  flash.next[:token] = user.password_token
+  redirect 'sessions/forgot_password'
+end
+
+get '/sessions/reset_passwords' do
+  erb :'sessions/reset_passwords'
+end
+
+post '/sessions/reset_passwords' do
+  user = User.first(email: params[:email])
+  user.password_confirmation = params[:new_password]
+  if user.password_recovery?(params[:email], params[:token])
+    user.password = (params[:new_password])
+    user.save 
+    session[:user_id] = user.id
+    redirect '/links'
+  end
+end
+
+end
