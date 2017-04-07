@@ -50,6 +50,12 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
+  post '/signout' do
+    flash.next[:goodbye_message] = "Goodbye"
+    session[:user_id] = nil
+    redirect '/links'
+  end
+
   get '/links' do
     @links = Link.all
     @tags = Tag.all

@@ -19,6 +19,12 @@
         <% end %>
       </ul>
     <% end %>
+    <%= flash[:goodbye_message] %>
+    <% if current_user %>
+      <form action='/signout' method='post' >
+        <input type='submit' value='Log Out' >
+      </form>
+    <% end %>
     <%= yield %>
   </body>
 </html>
